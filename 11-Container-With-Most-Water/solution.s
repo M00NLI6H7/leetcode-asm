@@ -9,7 +9,7 @@ _maxArea:
     sub rsp, 8
     mov qword ptr [rsp + 0], rdi
 
-    mov r8, -2147483648
+    mov r8d, 0x00000080
     mov r9, 0
     mov r10, rsi
     sub r10, 1

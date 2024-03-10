@@ -1,26 +1,28 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
 extern int maxArea(int* heights, int heightsSize);
 
-int main()
+int main(int argc, char** argv)
 {
-    int heightsSize = 9;
-    int* heights = malloc(sizeof(int)*heightsSize);
+    if (argc < 2)
+    {
+        fprintf(stderr, "usage: ./11-Container-With-Most-Water heights...\n");
+        return 0;
+    }
 
-    // [1,8,6,2,5,4,8,3,7]
-    heights[0] = 1;
-    heights[1] = 8;
-    heights[2] = 6;
-    heights[3] = 2;
-    heights[4] = 5;
-    heights[5] = 4;
-    heights[6] = 8;
-    heights[7] = 3;
-    heights[8] = 7;
+    const int heightsSize = argc - 1;
+    int* heights = malloc(sizeof(int) * heightsSize);
 
-    int max = maxArea(heights, heightsSize);
-    printf("maxArea = %d", max);
-    return max;
+    for(size_t i = 1; i < argc; i++)
+    {
+        heights[i] = atoi(argv[i]);
+    }
+
+    printf("%d\n", maxArea(heights, heightsSize));
+
+    free(heights);
+    heights = NULL;
+
+    return 0;
 }
